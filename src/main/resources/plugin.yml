@@ -1,0 +1,8 @@
+name: RandomPick
+version: 1.0
+main: com.randompick.RandomPick
+api-version: 1.21
+author: Akar1881
+description: A plugin that replaces block drops with random items.
+
+commands: {}

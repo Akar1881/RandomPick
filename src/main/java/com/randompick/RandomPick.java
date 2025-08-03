@@ -27,9 +27,7 @@ public class RandomPick extends JavaPlugin implements Listener {
     private boolean allowEnchantedBooks;
     private int enchantedBookChance;
 
-    private String msgReceiveDrop;
-    private String msgReceiveEnchanted;
-    private String msgReceiveBook;
+    private boolean enableMessages;
 
     @Override
     public void onEnable() {
@@ -51,9 +49,7 @@ public class RandomPick extends JavaPlugin implements Listener {
         allowEnchantedBooks = config.getBoolean("allow-enchanted-books", true);
         enchantedBookChance = config.getInt("enchanted-book-chance", 10);
 
-        msgReceiveDrop = config.getString("messages.receive-drop", "You received a random drop!");
-        msgReceiveEnchanted = config.getString("messages.receive-enchanted-drop", "Lucky! You got an enchanted item!");
-        msgReceiveBook = config.getString("messages.receive-enchanted-book", "You found a mysterious enchanted book!");
+        enableMessages = config.getBoolean("enable-messages", true);
     }
 
     private void loadAllowedMaterials() {
@@ -81,7 +77,7 @@ public class RandomPick extends JavaPlugin implements Listener {
         // Check if we should drop enchanted book instead of normal item
         if (allowEnchantedBooks && random.nextInt(100) < enchantedBookChance) {
             dropItem = createRandomEnchantedBook();
-            event.getPlayer().sendMessage(msgReceiveBook);
+            sendMessage(event.getPlayer(), "receive-enchanted-book");
         } else {
             // Pick random normal item
             Material mat = allowedMaterials.get(random.nextInt(allowedMaterials.size()));
@@ -90,9 +86,9 @@ public class RandomPick extends JavaPlugin implements Listener {
             // Possibly add enchantments if item can be enchanted
             if (random.nextInt(100) < enchantChance && canBeEnchanted(mat)) {
                 addRandomEnchantments(dropItem);
-                event.getPlayer().sendMessage(msgReceiveEnchanted);
+                sendMessage(event.getPlayer(), "receive-enchanted-drop");
             } else {
-                event.getPlayer().sendMessage(msgReceiveDrop);
+                sendMessage(event.getPlayer(), "receive-drop");
             }
         }
 
@@ -166,5 +162,15 @@ public class RandomPick extends JavaPlugin implements Listener {
 
         book.setItemMeta(meta);
         return book;
+    }
+
+    private void sendMessage(org.bukkit.entity.Player player, String path) {
+        if (!enableMessages) return; // Global messages disabled
+        String fullPath = "messages." + path;
+        if (!getConfig().getBoolean(fullPath + ".enabled", true)) return; // This specific message disabled
+        String text = getConfig().getString(fullPath + ".text", "");
+        if (text != null && !text.isEmpty()) {
+            player.sendMessage(text);
+        }
     }
 }

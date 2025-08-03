@@ -1,19 +1,22 @@
-# Chance in percent to replace block drops with random drops (0-100)
+# Toggle all messages globally
+enable-messages: true
+
+# Chance in percent to replace block drops with random drops
 drop-chance: 100
 
-# Chance in percent to add enchantments to random dropped items (that can be enchanted)
+# Chance in percent to add enchantments to random dropped items
 enchant-chance: 30
 
-# Maximum number of random enchantments to add on enchanted items
+# Maximum number of random enchantments to add
 max-enchants: 3
 
-# Enable or disable dropping enchanted books as random drops
+# Enable dropping enchanted books
 allow-enchanted-books: true
 
-# Chance in percent to drop an enchanted book instead of a normal item
+# Chance to drop enchanted books
 enchanted-book-chance: 10
 
-# List of materials to exclude from random drops
+# List of materials to exclude
 unwanted-items:
   - AIR
   - CAVE_AIR
@@ -37,8 +40,13 @@ unwanted-items:
   - END_GATEWAY
   - SPAWNER
 
-# Message sent to player when they receive a random drop
 messages:
-  receive-drop: "§aYou received a random drop!"
-  receive-enchanted-drop: "§bLucky! You got an enchanted item!"
-  receive-enchanted-book: "§dYou found a mysterious enchanted book!"
+  receive-drop:
+    enabled: true
+    text: "§aYou received a random drop!"
+  receive-enchanted-drop:
+    enabled: true
+    text: "§bLucky! You got an enchanted item!"
+  receive-enchanted-book:
+    enabled: true
+    text: "§dYou found a mysterious enchanted book!"

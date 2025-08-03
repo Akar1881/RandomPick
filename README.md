@@ -45,53 +45,9 @@
 
 ## Configuration (`config.yml`)
 
-```yaml
-# Chance in percent to replace block drops with random drops (0-100)
-drop-chance: 100
-
-# Chance in percent to add enchantments to random dropped items (that can be enchanted)
-enchant-chance: 30
-
-# Maximum number of random enchantments to add on enchanted items
-max-enchants: 3
-
-# Enable or disable dropping enchanted books as random drops
-allow-enchanted-books: true
-
-# Chance in percent to drop an enchanted book instead of a normal item
-enchanted-book-chance: 10
-
-# List of materials to exclude from random drops
-unwanted-items:
-  - AIR
-  - CAVE_AIR
-  - VOID_AIR
-  - BEDROCK
-  - BARRIER
-  - COMMAND_BLOCK
-  - COMMAND_BLOCK_MINECART
-  - STRUCTURE_BLOCK
-  - STRUCTURE_VOID
-  - JIGSAW
-  - DEBUG_STICK
-  - LIGHT
-  - REPEATING_COMMAND_BLOCK
-  - CHAIN_COMMAND_BLOCK
-  - KNOWLEDGE_BOOK
-  - PLAYER_HEAD
-  - PLAYER_WALL_HEAD
-  - END_PORTAL_FRAME
-  - NETHER_PORTAL
-  - END_GATEWAY
-  - SPAWNER
-
-# Message sent to player when they receive a random drop
-messages:
-  receive-drop: "§aYou received a random drop!"
-  receive-enchanted-drop: "§bLucky! You got an enchanted item!"
-  receive-enchanted-book: "§dYou found a mysterious enchanted book!"
-
-```
+- Messages Can be disabled/enabled
+- Can add unwanted item like add item in unwanted list then no one get that item randomly
+- Enchanted Books drop enabled/disabled
 ---
 
 Commands
